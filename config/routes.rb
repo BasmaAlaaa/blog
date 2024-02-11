@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Defines the route for the "blog_posts" resource
   resources :blog_posts do
     resources :comments, only: [:show , :create, :destroy]
