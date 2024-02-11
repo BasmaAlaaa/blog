@@ -1,0 +1,6 @@
+<h1> Comment </h1>
+<%= @comment.content %>
+<div>
+  <%= button_to 'Delete', blog_post_comment_path(@blog_post.id,@comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+

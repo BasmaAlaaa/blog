@@ -4,7 +4,8 @@
 <%= @blog_post.body %>
 <h3>Comments</h3>
 <% @blog_post.comments.each do |comment| %>
-  <p><%= comment.content %></p>
+<p><%= link_to comment.content, blog_post_comment_path(@blog_post, comment) %></p>
+
 <% end %>
 
 <h4>Add a comment:</h4>

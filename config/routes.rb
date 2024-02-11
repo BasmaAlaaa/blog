@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Defines the route for the "blog_posts" resource
   resources :blog_posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:show , :create, :destroy]
   end
   
   root "blog_posts#index"
