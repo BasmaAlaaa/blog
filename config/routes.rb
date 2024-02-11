@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Defines the route for the "blog_posts" resource
-  resources :blog_posts
+  resources :blog_posts do
+    resources :comments, only: [:create, :destroy]
+  end
+  
   root "blog_posts#index"
 #get "up" => "rails/health#show", as: :rails_health_check
 #patch "/blog_posts/:id" => "blog_posts#update", as: :update_blog_post

@@ -2,4 +2,20 @@
     <%= @blog_post.title %>
 </h1>
 <%= @blog_post.body %>
+<h3>Comments</h3>
+<% @blog_post.comments.each do |comment| %>
+  <p><%= comment.content %></p>
+<% end %>
+
+<h4>Add a comment:</h4>
+<%= form_with(model: [ @blog_post, @blog_post.comments.build ], local: true) do |form| %>
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </div>
+  <div>
+    <%= form.submit "Add Comment" %>
+  </div>
+<% end %>
+
 <%= link_to "Edit", edit_blog_post_path(@blog_post.id) %>
