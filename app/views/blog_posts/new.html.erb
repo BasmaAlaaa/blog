@@ -1,15 +1,20 @@
 <h1>
     New Blog
 </h1>
+<% if @blog_post.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@blog_post.errors.count, "error") %> prohibited this blog post from being saved:</h2>
+
+    <ul>
+    <% @blog_post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <%= form_with model: @blog_post do |f| %>
-<% if f.object.errors.any? %>
-    <div>
-        <% f.object.errors.full_messages.each do |message| %>
-          <div>  <%= message %></div>
-        <% end %>
-    </div>
-<% end %>
 
     <div>
         <%= f.label :title %>
@@ -20,6 +25,6 @@
         <%= f.text_area :body %>
     </div>
     <div>
-        <%= link_to f.submit , blog_posts_path %>
+    <%= f.submit "Create Blog Post" %>
     </div>
 <% end %>
