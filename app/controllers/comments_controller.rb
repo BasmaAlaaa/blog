@@ -4,8 +4,14 @@ class CommentsController < ApplicationController
 
     def create
         @blog_post = BlogPost.find(params[:blog_post_id])
-        @comment = @blog_post.comments.create(comment_params)
-        redirect_to blog_post_path(@blog_post)
+        # Build the comment associated with @blog_post and current_user
+        @comment = @blog_post.comments.new(comment_params)
+        @comment.user = current_user # Associate the comment with the current user
+        if @comment.save
+            redirect_to blog_post_path(@blog_post), notice: 'Comment was successfully created.'
+          else
+            redirect_to blog_post_path(@blog_post), alert: 'Comment could not be created.'
+          end
     end
     def destroy
         @blog_post = BlogPost.find(params[:blog_post_id])
@@ -30,4 +36,5 @@ class CommentsController < ApplicationController
         unless current_user == @comment.user
           redirect_to blog_post_path(@comment.blog_post), alert: "Not authorized to delete this comment"
         end
+    end
 end

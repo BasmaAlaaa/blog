@@ -18,5 +18,7 @@
     <%= form.submit "Add Comment" %>
   </div>
 <% end %>
+<% if current_user == @blog_post.user %>
+  <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
+<% end %>
 
-<%= link_to "Edit", edit_blog_post_path(@blog_post.id) %>
